@@ -1,6 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:closr_app/resources/app_config.dart';
-
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
@@ -13,6 +13,8 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  bool loading = false;
+  TextEditingController _controller = TextEditingController();
 
   void _incrementCounter() {
     setState(() {
@@ -38,6 +40,14 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.display1,
             ),
+            loading ? CircularProgressIndicator() : Container(),
+            TextField(
+              controller: _controller,
+            ),
+            RaisedButton(
+              child: Text("Add to Firestore"),
+              onPressed: _addToFirestore,
+            )
           ],
         ),
       ),
@@ -47,5 +57,17 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Icon(Icons.add),
       ),
     );
+  }
+
+  void _addToFirestore() async  {
+    if(_controller.text.isEmpty) return;
+    setState(() {
+      loading = true;
+    });
+    await Firestore.instance.collection('mycoll').add({"string":_controller.text});
+    _controller.text = "";
+    setState(() {
+      loading = false;
+    });
   }
 }

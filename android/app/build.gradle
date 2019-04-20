@@ -25,8 +25,7 @@ apply plugin: 'com.android.application'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
-    compileSdkVersion 2
-8
+    compileSdkVersion 28
     lintOptions {
         disable 'InvalidPackage'
     }
@@ -34,8 +33,9 @@ android {
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "com.closr.closr_app"
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 28
+        multiDexEnabled true
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -48,16 +48,16 @@ android {
             signingConfig signingConfigs.debug
         }
     }
-    // flavorDimensions "default"
-    // productFlavors {
-    //     dev {
-    //         dimension "default"
-    //         applicationIdSuffix ".dev"
-    //     }
-    //     prod {
-    //         dimension "default"
-    //     }
-    // }
+    flavorDimensions "default"
+    productFlavors {
+        dev {
+            dimension "default"
+            applicationIdSuffix ".dev"
+        }
+        prod {
+            dimension "default"
+        }
+    }
 }
 
 flutter {
@@ -66,8 +66,8 @@ flutter {
 
 dependencies {
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    androidTestImplementation 'com.android.support.test:runner:1.1.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.1.1'
     implementation 'com.google.firebase:firebase-core:16.0.1'
 }
 
