@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 
+enum Flavor {
+  DEV,
+  QA,
+  PRODUCTION
+}
+
 class AppConfig extends InheritedWidget {
   AppConfig(
       {@required Widget child,

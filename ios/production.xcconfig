@@ -1,0 +1,13 @@
+//
+//  development.xcconfig
+//  Runner
+//
+//  Created by Wan Yi Zhou on 20/4/19.
+//  Copyright © 2019 The Chromium Authors. All rights reserved.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+#include "Generated.xcconfig"
+
+FLUTTER_TARGET=/Users/wanyizhou/workspace/closr/prototype/closr_app/lib/main_prod.dart
