@@ -1,22 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 
-class AppConfig extends InheritedWidget{
+class AppConfig extends InheritedWidget {
+  AppConfig(
+      {@required Widget child,
+      @required this.appTitle,
+      @required this.buildFlavor})
+      : super(child: child);
+
   final String appTitle;
   final String buildFlavor;
-  final Widget child;
+  // final String apiBaseUrl;
 
-  AppConfig({
-    @required this.child,
-    @required this.appTitle,
-    @required this.buildFlavor});
-
-  static AppConfig of(BuildContext context){
+  static AppConfig of(BuildContext context) {
     return context.inheritFromWidgetOfExactType(AppConfig);
   }
 
   @override
-  bool updateShouldNotify(InheritedWidget oldWidget)=> false;
-
-
+  bool updateShouldNotify(InheritedWidget oldWidget) => false;
 }
